@@ -1,69 +1,3 @@
-CREATE TABLE nationality
-(
-    idNationality INTEGER PRIMARY KEY NOT NULL,
-    Country VARCHAR(30)
-);
-
-CREATE TABLE productsType
-(
-    idProductType INTEGER PRIMARY KEY NOT NULL,
-    Title VARCHAR(50)
-);
-
-CREATE TABLE products
-(
-    idProduct INTEGER PRIMARY KEY NOT NULL,
-    name VARCHAR(100),
-    Price INTEGER NOT NULL,
-    Stock INTEGER,
-    idProductType INTEGER NOT NULL,
-    FOREIGN KEY(idProductType) REFERENCES productsType(idProductType) 
-);
-
-CREATE TABLE paymentType
-(
-    idPaymentType INTEGER PRIMARY KEY NOT NULL,
-    MeansOfPayment VARCHAR(50)
-);
-
-CREATE TABLE historiques
-(
-    idHistorique INTEGER PRIMARY KEY NOT NULL,
-    idClient INTEGER NOT NULL,
-    idProduct INTEGER NOT NULL,
-    idPaymentType INTEGER NOT NULL,
-    FOREIGN KEY(idClient) REFERENCES clients(idClient),
-    FOREIGN KEY(idProduct) REFERENCES products(idProduct),
-    FOREIGN KEY(idPaymentType) REFERENCES paymentType(idPaymentType)
-);
-
-CREATE TABLE clientTypes
-(
-    idClientType INTEGER PRIMARY KEY NOT NULL,
-    type VARCHAR(20)
-);
-
-CREATE TABLE clients
-(
-    idClient INTEGER PRIMARY KEY NOT NULL,
-    FirstName VARCHAR(50),
-    LastName VARCHAR(50),
-    Email VARCHAR(50),
-    Phone VARCHAR(50),
-    idNationality INTEGER,
-    FOREIGN KEY(idNationality) REFERENCES nationality(idNationality)
-);
-
-CREATE TABLE company
-(
-    idClient INTEGER NOT NULL,
-    idClientType INTEGER NOT NULL,
-    idHistorique INTEGER NOT NULL,
-    FOREIGN KEY(idHistorique) REFERENCES historiques(idHistorique),
-    FOREIGN KEY(idClientType) REFERENCES clientTypes(idClientType),
-    FOREIGN KEY(idClient) REFERENCES clients(idClient)
-);
-
 INSERT INTO nationality
 VALUES
 (1, 'France'),
@@ -126,8 +60,6 @@ VALUES
 (4, 'Virement bancaire'),
 (5, 'Monnaies virtuelles');
 
-
-
 INSERT INTO clientTypes
 VALUES
 (1, 'Client'),
@@ -153,36 +85,36 @@ VALUES
 
 INSERT INTO historiques
 VALUES
-(1, 2, 1, 1),
-(2, 5, 4, 1),
-(3, 4, 6, 1),
-(4, 8, 7, 1),
-(5, 6, 9, 1),
-(6, 7, 11, 2),
-(7, 3, 13, 2),
-(8, 15, 15, 2),
-(9, 13, 5, 2),
-(10, 3, 4, 2),
-(11, 5, 15, 2),
-(12, 9, 12, 3),
-(13, 4, 15, 3),
-(14, 6, 14, 3),
-(15, 3, 13, 3),
-(16, 7, 7, 4),
-(17, 5, 8, 4),
-(18, 6, 6, 4),
-(19, 8, 4, 4),
-(20, 12, 3, 4),
-(21, 13, 7, 5),
-(22, 12, 6, 5),
-(23, 11, 4, 5),
-(24, 9, 1, 5),
-(25, 4, 3, 5),
-(26, 3, 5, 1),
-(27, 7, 9, 1),
-(28, 5, 6, 1),
-(29, 12, 8, 1),
-(30, 4, 9, 1);
+(1, 2, 1, 1, '2023-01-23'),
+(2, 5, 4, 1, '2023-02-12'),
+(3, 4, 6, 1, '2023-10-16'),
+(4, 8, 7, 1, '2023-05-28'),
+(5, 6, 9, 1, '2023-01-23'),
+(6, 7, 11, 2, '2023-06-23'),
+(7, 3, 13, 2, '2023-06-24'),
+(8, 15, 15, 2, '2023-01-12'),
+(9, 13, 5, 2, '2023-06-15'),
+(10, 3, 4, 2, '2023-08-30'),
+(11, 5, 15, 2, '2023-09-12'),
+(12, 9, 12, 3, '2023-07-23'),
+(13, 4, 15, 3, '2023-06-25'),
+(14, 6, 14, 3, '2023-05-26'),
+(15, 3, 13, 3, '2023-04-24'),
+(16, 7, 7, 4, '2023-03-28'),
+(17, 5, 8, 4, '2023-02-16'),
+(18, 6, 6, 4, '2023-01-12'),
+(19, 8, 4, 4, '2023-12-14'),
+(20, 12, 3, 4, '2023-11-16'),
+(21, 13, 7, 5, '2023-10-13'),
+(22, 12, 6, 5, '2023-09-15'),
+(23, 11, 4, 5, '2023-08-18'),
+(24, 9, 1, 5, '2023-07-20'),
+(25, 4, 3, 5, '2023-06-21'),
+(26, 3, 5, 1, '2023-05-23'),
+(27, 7, 9, 1, '2023-04-12'),
+(28, 5, 6, 1, '2023-03-02'),
+(29, 12, 8, 1, '2023-01-05'),
+(30, 4, 9, 1, '2023-02-06');
 
 INSERT INTO company
 VALUES
@@ -201,12 +133,3 @@ VALUES
 (13, 1, 23),
 (14, 2, 21),
 (15, 1, 26);
-
-SELECT * FROM nationality ORDER BY Country;
-SELECT * FROM productsType ORDER BY Title;
-SELECT * FROM products ORDER BY name;
-SELECT * FROM paymentType ORDER BY MeansOfPayment;
-SELECT * FROM historiques ORDER BY idHistorique;
-SELECT * FROM clientTypes ORDER BY type;
-SELECT * FROM clients ORDER BY FirstName;
-SELECT * FROM company ORDER BY idClient;
