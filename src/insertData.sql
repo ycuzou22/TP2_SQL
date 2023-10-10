@@ -1,21 +1,3 @@
-INSERT INTO nationality
-VALUES
-(1, 'France'),
-(2, 'Espagnol'),
-(3, 'Suisse'),
-(4, 'Belgique'),
-(5, 'Royaume-Uni'),
-(6, 'Pays-Bas'),
-(7, 'Finland'),
-(8, 'Italie'),
-(9, 'Allemand'),
-(10, 'Chine'),
-(11, 'états-unis'),
-(12, 'Bresil'),
-(13, 'Japon'),
-(14, 'Autralie'),
-(15, 'Inde');
-
 INSERT INTO productsType
 VALUES
 (1, 'Calculatrice'),
